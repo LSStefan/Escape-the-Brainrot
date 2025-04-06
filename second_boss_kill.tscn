@@ -1,0 +1,146 @@
+[gd_scene load_steps=8 format=3 uid="uid://du88n7ibhkpqp"]
+
+[ext_resource type="Script" uid="uid://bi6wa4vlq2x3i" path="res://second_boss_kill.gd" id="1_sdf40"]
+[ext_resource type="Texture2D" uid="uid://by41cdd7whdxr" path="res://Scenes/Cappuccino assassino/background_boss.jpg" id="2_g1pu7"]
+
+[sub_resource type="Animation" id="Animation_wjq5b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.686275)]
+}
+
+[sub_resource type="Animation" id="Animation_0hqln"]
+resource_name = "Text"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.686275), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RichTextLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 1.56667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ks6pl"]
+resource_name = "text"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 1.86667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667, 1.93333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.686275)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6l7cc"]
+_data = {
+&"RESET": SubResource("Animation_wjq5b"),
+&"Text": SubResource("Animation_0hqln"),
+&"text": SubResource("Animation_ks6pl")
+}
+
+[sub_resource type="Theme" id="Theme_0hqln"]
+default_font_size = 37
+
+[node name="Node" type="Node"]
+script = ExtResource("1_sdf40")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_g1pu7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -2.0
+offset_top = -19.0
+offset_right = 1155.0
+offset_bottom = 672.0
+color = Color(0, 0, 0, 0.686275)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6l7cc")
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -485.0
+offset_top = -380.0
+offset_right = 484.0
+offset_bottom = 347.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_0hqln")
+text = "
+Mission complete! Congrats!
+
+Mr. Cappuccino has spilled his last drop.
+The café is safe — for now.
+But there’s a dark roast on the horizon...
+Brew yourself another cup. This fight’s far from over.
+
+Press [Enter] to continue"
+horizontal_alignment = 1
+vertical_alignment = 1

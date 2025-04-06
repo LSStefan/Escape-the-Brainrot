@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://gxg5stb0yal0"]
+
+[ext_resource type="Script" uid="uid://cerb3tnckelol" path="res://credits_game.gd" id="1_mfb2t"]
+[ext_resource type="Texture2D" uid="uid://pyshap76q4es" path="res://credits.png" id="1_wra22"]
+
+[sub_resource type="SystemFont" id="SystemFont_06t4h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jix8l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qe12f"]
+bg_color = Color(0.647059, 0.427451, 0.266667, 1)
+border_color = Color(0.243137, 0.47451, 0.207843, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qtwp"]
+bg_color = Color(0.243137, 0.47451, 0.207843, 1)
+border_color = Color(0.243137, 0.47451, 0.207843, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
+bg_color = Color(0.243137, 0.47451, 0.207843, 1)
+border_color = Color(0.243137, 0.47451, 0.207843, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+shadow_size = 5
+
+[node name="Credits_MENU" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mfb2t")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.99997
+offset_top = 2.99998
+offset_right = 4207.0
+offset_bottom = 2422.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.215297, 0.211299)
+texture = ExtResource("1_wra22")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -136.0
+offset_top = 459.0
+offset_right = 124.0
+offset_bottom = -140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 17
+
+[node name="BackButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_06t4h")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jix8l")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qe12f")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8qtwp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7vrkn")
+text = "Back to main menu"

@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://dpmn4rpd2djwb"]
+
+[ext_resource type="Script" uid="uid://dliqk8vbf4kvc" path="res://enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://dcfnaerq5pd0w" path="res://Walk/Walk-Base-Sheet-White.png" id="1_7k104"]
+[ext_resource type="PackedScene" uid="uid://tjxh8heb6dc6" path="res://killzone.tscn" id="3_qi2p4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gyqm"]
+atlas = ExtResource("1_7k104")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi2p4"]
+atlas = ExtResource("1_7k104")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iifgy"]
+atlas = ExtResource("1_7k104")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epg4t"]
+atlas = ExtResource("1_7k104")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yqyl"]
+atlas = ExtResource("1_7k104")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wujgv"]
+atlas = ExtResource("1_7k104")
+region = Rect2(240, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hb8ge"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gyqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi2p4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iifgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epg4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yqyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wujgv")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e1ltt"]
+radius = 16.0312
+
+[node name="Node2D" type="CharacterBody2D"]
+script = ExtResource("1_4gyqm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hb8ge")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.39051
+
+[node name="killzone" parent="." instance=ExtResource("3_qi2p4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(-1, 6)
+shape = SubResource("CircleShape2D_e1ltt")
+
+[node name="RayCastright" type="RayCast2D" parent="."]
+position = Vector2(-1, 6)
+target_position = Vector2(25, 0)
+
+[node name="RayCastrightleft" type="RayCast2D" parent="."]
+position = Vector2(-1, 6)
+target_position = Vector2(-24, 0)
+
+[connection signal="body_entered" from="killzone" to="." method="_on_killzone_body_entered"]

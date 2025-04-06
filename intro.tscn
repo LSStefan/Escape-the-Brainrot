@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgbt3407n0ju5"]
+
+[ext_resource type="Script" uid="uid://behx5hu0og13v" path="res://node.gd" id="1_s2ta7"]
+[ext_resource type="VideoStream" uid="uid://cn1o7asbl8o8q" path="res://PowerPoint-INTRO.ogv" id="2_ayt76"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_s2ta7")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.603254, 0.603254)
+stream = ExtResource("2_ayt76")
+autoplay = true
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

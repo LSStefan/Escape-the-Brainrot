@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5ypo03is7aq7"]
+
+[ext_resource type="Texture2D" uid="uid://5f0rfgx60w8o" path="res://enemies/enemies/tralalelo tralala.png" id="1_v8qja"]
+[ext_resource type="Script" uid="uid://bfv1ow81q5pi5" path="res://bullet.gd" id="2_v8qja"]
+[ext_resource type="Script" uid="uid://dp1f82frnwlgj" path="res://bullet_area.gd" id="3_t4vbm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v8qja"]
+radius = 350.0
+
+[node name="Sprite2D" type="Sprite2D" groups=["bullet"]]
+position = Vector2(0, 223)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("1_v8qja")
+script = ExtResource("2_v8qja")
+
+[node name="Area2D" type="Area2D" parent="." groups=["bullet"]]
+script = ExtResource("3_t4vbm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["bullet"]]
+shape = SubResource("CircleShape2D_v8qja")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

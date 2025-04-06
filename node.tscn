@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://btvhdvpfy4ktn"]
+
+[ext_resource type="VideoStream" uid="uid://cam5kv2sbvuih" path="res://victory.ogv" id="1_sy5k4"]
+
+[node name="Node" type="Node"]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+offset_left = 3.0
+offset_top = 0.999998
+offset_right = 1923.0
+offset_bottom = 1081.0
+scale = Vector2(0.599617, 0.599617)
+stream = ExtResource("1_sy5k4")
+autoplay = true

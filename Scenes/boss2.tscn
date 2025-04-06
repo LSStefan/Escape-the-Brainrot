@@ -1,0 +1,114 @@
+[gd_scene load_steps=11 format=3 uid="uid://cbk22hijlka82"]
+
+[ext_resource type="Script" uid="uid://yc464xyux87l" path="res://Scenes/boss_2.gd" id="1_o7rb6"]
+[ext_resource type="Texture2D" uid="uid://be8ebkxvd1mgw" path="res://Scenes/Cappuccino assassino/Cappuccino assassino/image.png" id="2_o7rb6"]
+[ext_resource type="PackedScene" uid="uid://tjxh8heb6dc6" path="res://killzone.tscn" id="3_5wlqp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvscf"]
+atlas = ExtResource("2_o7rb6")
+region = Rect2(0, 0, 353, 353)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjcoq"]
+atlas = ExtResource("2_o7rb6")
+region = Rect2(353, 0, 353, 353)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hfml4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvscf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjcoq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o7rb6"]
+size = Vector2(356, 354)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o7rb6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvscf"]
+bg_color = Color(0.517647, 0.0196078, 0.0784314, 1)
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+shadow_color = Color(0.764706, 0.717647, 0.329412, 0.192157)
+shadow_size = 7
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjcoq"]
+bg_color = Color(0, 0, 0, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[node name="cappuccino" type="CharacterBody2D"]
+script = ExtResource("1_o7rb6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hfml4")
+autoplay = "default"
+frame_progress = 0.705294
+
+[node name="killzone" parent="." instance=ExtResource("3_5wlqp")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_o7rb6")
+
+[node name="RayCastright" type="RayCast2D" parent="."]
+position = Vector2(-1, 6)
+target_position = Vector2(189, -1)
+
+[node name="RayCastrightleft" type="RayCast2D" parent="."]
+position = Vector2(-1, 6)
+target_position = Vector2(-192, -1)
+
+[node name="RayCastup" type="RayCast2D" parent="."]
+target_position = Vector2(0, -191)
+
+[node name="RayCastdown" type="RayCast2D" parent="."]
+target_position = Vector2(0, 191)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+editor_description = "
+"
+top_level = true
+z_index = 1
+texture_filter = 1
+offset_left = 31.0
+offset_top = 9.0
+offset_right = 731.0
+offset_bottom = 19.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_o7rb6")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tvscf")
+value = 100.0
+rounded = true
+show_percentage = false
+
+[node name="DamageBar" type="ProgressBar" parent="HealthBar"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_pjcoq")
+show_percentage = false
+
+[node name="ScreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="killzone" to="." method="_on_killzone_body_entered"]

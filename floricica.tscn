@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://c88gjf1otjqvr"]
+
+[ext_resource type="Script" uid="uid://estbhgtnmwvw" path="res://floricica.gd" id="1_fkext"]
+[ext_resource type="Texture2D" uid="uid://cbgv26iymbmjq" path="res://enemies/enemies/floricica dansatoarea.png" id="2_hxa2m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ulp0s"]
+radius = 45.0
+
+[node name="Floricica" type="Area2D"]
+script = ExtResource("1_fkext")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(908, 490)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_hxa2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(909, 489)
+shape = SubResource("CircleShape2D_ulp0s")
+
+[node name="DamageFlashTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.2
+one_shot = true
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="DamageFlashTimer" to="." method="_on_damage_flash_timer_timeout"]

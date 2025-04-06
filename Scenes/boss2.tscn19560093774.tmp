@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://cbk22hijlka82"]
+
+[ext_resource type="Script" uid="uid://yc464xyux87l" path="res://Scenes/boss_2.gd" id="1_o7rb6"]
+[ext_resource type="Texture2D" uid="uid://be8ebkxvd1mgw" path="res://Scenes/Cappuccino assassino/Cappuccino assassino/image.png" id="2_o7rb6"]
+[ext_resource type="PackedScene" uid="uid://tjxh8heb6dc6" path="res://killzone.tscn" id="3_5wlqp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvscf"]
+atlas = ExtResource("2_o7rb6")
+region = Rect2(0, 0, 353, 353)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjcoq"]
+atlas = ExtResource("2_o7rb6")
+region = Rect2(353, 0, 353, 353)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hfml4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvscf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjcoq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o7rb6"]
+size = Vector2(356, 354)
+
+[node name="cappuccino" type="CharacterBody2D"]
+script = ExtResource("1_o7rb6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hfml4")
+autoplay = "default"
+frame_progress = 0.705294
+
+[node name="killzone" parent="." instance=ExtResource("3_5wlqp")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_o7rb6")
+
+[node name="RayCastright" type="RayCast2D" parent="."]
+position = Vector2(-1, 6)
+target_position = Vector2(189, -1)
+
+[node name="RayCastrightleft" type="RayCast2D" parent="."]
+position = Vector2(-1, 6)
+target_position = Vector2(-192, -1)
+
+[node name="RayCastup" type="RayCast2D" parent="."]
+target_position = Vector2(0, -191)
+
+[node name="RayCastdown" type="RayCast2D" parent="."]
+target_position = Vector2(0, 191)
+
+[connection signal="body_entered" from="killzone" to="." method="_on_killzone_body_entered"]
